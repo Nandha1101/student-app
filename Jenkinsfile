@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -25,19 +24,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn compile'
+                bat 'cd studentapp && mvn compile'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                bat 'cd studentapp && mvn test'
             }
         }
 
         stage('Package') {
             steps {
-                bat 'mvn package'
+                bat 'cd studentapp && mvn package'
             }
         }
     }
