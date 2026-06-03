@@ -14,7 +14,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout Code') {
             steps {
                 git branch: "${params.BRANCH_NAME}",
@@ -24,19 +23,25 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'cd studentapp && mvn compile'
+                dir('studentapp') {
+                    bat 'mvn compile'
+                }
             }
         }
 
         stage('Test') {
             steps {
-                bat 'cd studentapp && mvn test'
+                dir('studentapp') {
+                    bat 'mvn test'
+                }
             }
         }
 
         stage('Package') {
             steps {
-                bat 'cd studentapp && mvn package'
+                dir('studentapp') {
+                    bat 'mvn package'
+                }
             }
         }
     }
